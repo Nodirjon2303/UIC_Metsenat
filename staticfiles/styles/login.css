@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Rubik:wght@400;500&display=swap");
+
+:root {
+  --main-background-color: #e5e5e5;
+  --blue-text-color: #3366ff;
+
+  --sky-text-color: rgba(51, 102, 255, 0.6);
+  --text-color: #f44336;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: "League Spartan", sans-serif;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 12px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: var(--main-color);
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.container {
+  width: 83%;
+  margin: 0 auto;
+}
+
+body {
+  width: 100%;
+  text-align: center;
+
+  height: 100vh;
+  background: #e5e5e5;
+}
+
+.logo {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.login_box {
+  margin: 50px auto;
+  width: 380px;
+  min-height: 100px;
+  background-color: #fff;
+}
+
+.login_box {
+  padding: 32px;
+}
+.login__title {
+  text-align: left;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #28293d;
+  margin-bottom: 44px;
+}
+
+.form {
+  text-align: left;
+}
+
+.login_box label {
+  font-family: "Rubik";
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 1.125px;
+  text-transform: uppercase;
+
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+.login_box input {
+  width: 100%;
+  padding: 12px 15px;
+
+  background: rgba(224, 231, 255, 0.2);
+  border: 1px solid #e0e7ff;
+  border-radius: 6px;
+  font-family: "Rubik";
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 22px;
+}
+.login_box button {
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+
+  padding: 14px 0;
+  width: 100%;
+
+  background: #2e5bff;
+  border-radius: 6px;
+  color: #ffffff;
+}

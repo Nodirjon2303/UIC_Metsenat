@@ -1,0 +1,399 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Rubik:wght@400;500&display=swap");
+
+:root {
+  --main-background-color: #e5e5e5;
+  --blue-text-color: #3366ff;
+
+  --sky-text-color: rgba(51, 102, 255, 0.6);
+  --text-color: #f44336;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: "League Spartan", sans-serif;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 12px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: var(--main-color);
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.container {
+  width: 83%;
+  margin: 0 auto;
+}
+
+/* Body */
+
+body {
+  min-width: 1440px;
+}
+
+header {
+  background-color: #fff;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul {
+  height: 100%;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 39px;
+  height: 47px;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 80px;
+  height: 80px;
+  text-align: right;
+  letter-spacing: -0.35px;
+  font-weight: 500;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  min-width: 1440px;
+  display: flex;
+  box-shadow: inset 0px 25px 40px rgba(0, 0, 0, 0.03);
+}
+
+.form__box {
+  box-shadow: inset 0px 20px 40px rgba(0, 0, 0, 0.03);
+  padding-top: 75px;
+  margin: 0 100px 0 120px;
+  min-width: 590px;
+  background-color: #fff;
+}
+.form__title {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+
+  letter-spacing: 0.01em;
+
+  color: #1d1d1f;
+  padding-right: 165px;
+}
+
+.btns {
+  width: 100%;
+  margin: 20px 0;
+  font-size: 0;
+}
+
+.btns button {
+  height: 40px;
+  width: 50%;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 1.125px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: var(--sky-text-color);
+  outline: none;
+  border: 1px solid var(--sky-text-color);
+}
+
+#jismoniy {
+  border-radius: 6px 0px 0px 6px;
+}
+
+#yuridik {
+  border-radius: 0px 6px 6px 0px;
+}
+
+#yuridik.active,
+#jismoniy.active {
+  background-color: var(--blue-text-color);
+  color: #fff;
+}
+
+.yuridik-remove {
+  display: none;
+}
+.yuridik-remove-show {
+  display: block;
+}
+
+form label {
+  display: block;
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 1.125px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+
+  color: #1d1d1f;
+}
+
+form input {
+  display: inline-block;
+  margin-bottom: 30px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  border-radius: 6px;
+  border: 1px solid #e0e7ff;
+  background: rgba(224, 231, 255, 0.2);
+}
+::-webkit-input-placeholder {
+  color: rgba(46, 56, 77, 0.35);
+}
+:-moz-placeholder {
+  color: rgba(46, 56, 77, 0.35);
+}
+::-moz-placeholder {
+  color: rgba(46, 56, 77, 0.35);
+}
+:-ms-input-placeholder {
+  color: rgba(46, 56, 77, 0.35);
+}
+.for-radio {
+  font-family: "Rubik", sans-serif;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--blue-text-color);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: uppercase;
+
+  color: #2e384d;
+
+  text-align: center;
+  user-select: none;
+}
+
+.for-radio:checked {
+  background-color: #000;
+}
+
+.for-radio span {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+
+  color: #2e5bff;
+}
+#pricecount {
+  display: none;
+}
+
+#pricecount.show {
+  display: block;
+}
+
+.price {
+  position: relative;
+  width: 185px;
+  margin-bottom: 15px;
+}
+
+.price input {
+  position: absolute;
+  right: -88px;
+  top: -5px;
+  size: 20px;
+}
+
+.price__box-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.price__btn {
+  font-family: "Rubik", sans-serif;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--blue-text-color);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: uppercase;
+
+  color: #2e384d;
+  background-color: #fff;
+  text-align: center;
+  width: 185px;
+}
+.submit {
+  width: 100%;
+  margin-bottom: 150px;
+  background: #2e5bff;
+  border-radius: 6px;
+  padding: 15px 0;
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+
+  color: #ffffff;
+}
+
+.main__right {
+  box-shadow: inset 0px 25px 40px rgba(0, 0, 0, 0.03);
+  padding-top: 75px;
+  width: 100%;
+  background-color: #f5f5f7;
+}
+
+.main__right-inner {
+  margin: 0 125px 0 70px;
+}
+
+.right__text {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+
+  text-align: justify;
+
+  color: #28293d;
+  margin-bottom: 25px;
+}
+.right__profile {
+  display: flex;
+}
+.profile_img {
+  width: 55px;
+  height: 55px;
+  background-color: #000;
+  margin-right: 20px;
+  border-radius: 16px;
+}
+.prof_info-name {
+  font-family: "SF Pro Text";
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 150%;
+
+  text-align: justify;
+  letter-spacing: -0.352px;
+
+  color: #000000;
+  margin-bottom: 3px;
+}
+.prof_info-text {
+  font-family: "SF Pro Text";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+
+  letter-spacing: -0.352px;
+
+  color: #86868b;
+}
+
+.ready-box {
+  width: 1000px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
