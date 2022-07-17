@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['metsenat1.uz', '127.0.0.1', '165.232.133.231']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
