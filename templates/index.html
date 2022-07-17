@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metsenat</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+   <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-inner">
+          <div
+            class="header-logo"
+            style="width: 215px; height: 80px; background: rgba(32, 68, 160, 1)"
+          ></div>
+          <nav class="navbar">
+            <ul>
+              <li><a href="#">Asosiy</a></li>
+              <li><a href="#">Grantlar</a></li>
+              <li><a href="#">Soliq imtiyozlari</a></li>
+              <li><a href="{% url 'login' %}">Kirish</a></li>
+              <li><a href="#">Ro'yxatdan o'tish</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+        {% if status == 'None' or status == 'false' %}
+      <div class="form__box">
+        <p class="form__title">Homiy sifatida ariza topshirish</p>
+
+            <div class="btns">
+          <button id="jismoniy" class="active">Jismoniy shaxs</button>
+          <button  id="yuridik">yuridik shaxs</button>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+          <label for="fname">F.I.SH. (Familiya Ism Sharifingiz)</label>
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            required
+            placeholder="Abdullayev Abdulla Abdullayevich"
+          />
+          <label for="pnumber">Telefon raqamingiz</label>
+          <input
+            type="number"
+            id="pnumber"
+            name="number"
+            required
+            minlength="9"
+            maxlength="9"
+            placeholder="00 000-00-00"
+          />
+
+          <div class="price__box">
+            <label for="payment">To'lov summasi</label> <br />
+
+            <div class="price__box-inner">
+              <div class="price" onclick="remove_summa()">
+                <label class="for-radio" for="firstp"
+                  >1 000 000 <span>uzs</span></label
+                >
+                <input
+                  type="radio"
+                  id="firstp"
+                  name="payment"
+                  value="1000000"
+                  checked
+                />
+              </div>
+
+              <div class="price" onclick="remove_summa()">
+                <label class="for-radio" for="secondp"
+                  >5 000 000 <span>uzs</span></label
+                >
+                <input type="radio" id="secondp" name="payment" value="5000000" />
+              </div>
+
+              <div class="price" onclick="remove_summa()">
+                <label class="for-radio" for="thirdp"
+                  >8 000 000 <span>uzs</span></label
+                >
+                <input type="radio" id="thirdp" name="payment" value="8000000" />
+              </div>
+
+              <div class="price" onclick="remove_summa()">
+                <label class="for-radio" for="fourthp"
+                  >10 000 000 <span>uzs</span></label
+                >
+                <input type="radio" id="fourthp" name="payment" value="10000000" />
+              </div>
+
+              <div class="price" onclick="remove_summa()">
+                <label class="for-radio" for="fifthp"
+                  >50 000 000 <span>uzs</span></label
+                >
+                <input type="radio" id="fifthp" name="payment" value="50000000" />
+              </div>
+
+              <div class="price">
+                <input type="radio" id="sixth" name="payment" value="" />
+                <label for="sixth" type="button" class="price__btn"
+                  >Boshqa</label
+                >
+              </div>
+              <input type="number" id="pricecount" name="otherpayment" placeholder="summani kiriting" />
+                </div>
+          </div>
+          <div class="yuridik-remove">
+            <label for="cname">Tashkilot nomi</label>
+            <input
+              type="text"
+              id="cname"
+              name="cname"
+              placeholder="Orient group"
+            /><br /><br />
+          </div>
+          <button class="submit" type="submit">Yuborish</button>
+        </form>
+      </div>
+            {% else %}
+            <div class="form__box">
+           <i style="font-size:24px">Rahmat malumotlar tekshirilishga yuborildi<br>
+            Tez orada siz bilan bog'lanamiz!
+            </i>
+            </div>
+        {% endif %}
+      <div class="main__right">
+        <div class="main__right-inner">
+          <div class="right__text">
+            Yuqori sinflarda bolalar shaxs boʻlib, jamoa boʻlib shakllanadi.
+            Ayni oʻsha paytda ularni oʻzlari oʻrgangan muhitdan ajratib
+            qoʻymaslik kerak.
+          </div>
+          <div class="right__profile">
+            <div class="profile_img"></div>
+            <div class="prof_info">
+              <div class="prof_info-name">Shavkat Mirziyoyev</div>
+              <div class="prof_info-text">
+                O'zbekiston Respublikasi Prezidenti
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ready-box"></div>
+    </main>
+    <script src="{% static 'js/home.js' %}"></script>
+  </body>
+</html>

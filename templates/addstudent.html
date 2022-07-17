@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Metsenat</title>
+    <link rel="stylesheet" href="{% static 'styles/addstudent.css' %}"/>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="header_inner">
+            <div class="header__logo"></div>
+            <div class="header_account">
+                <div class="account-name">{{ request.user.username }}<span></span></div>
+                <div class="account-exit"></div>
+            </div>
+        </div>
+    </div>
+    <div class="about">
+        <div class="container">
+            <div class="about_inner">
+                <a class="about_back" href="{% url 'students' %}"
+                ><img src="{% static 'img/arrowleft.svg' %}" alt="back"
+                /></a>
+                <div class="person_name">Talaba qo'shish</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="person_card">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="person_card_form_box">
+                <label for="ism">F.I.SH(Familiya Ism Sharifingiz</label>
+                <input
+                        type="text"
+                        name="name"
+                        id="ism"
+                        required
+                        placeholder="Abdullayev Abdulla Abdulla o’g’li"
+                />
+            </div>
+            <div class="person_card_form_box">
+                <label for="tel">Telefon raqamingiz</label>
+                <input
+                        type="number"
+                        name="phone"
+                        id="tel"
+                        required
+                        placeholder="90 123 45 67"
+                />
+            </div>
+            <label for="otm">OTM</label>
+            <select name="otm" id="otm">
+                {% for i in universities %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="person_card_form_box">
+                <label for="turi">Talabalik turi</label>
+                <select name="turi" id="turi">
+                    <option value="bakalavr">Bakalavr</option>
+                    <option value="magistr">Magistr</option>
+                </select>
+            </div>
+            <div class="person_card_form_box">
+                <label for="summa">Kontrakt summa</label>
+                <input
+                        required
+                        type="number"
+                        name="amount"
+                        id="summa"
+                        placeholder="Kontrakt Summasini kiriting"
+                />
+            </div>
+            <button class="btn" type="submit">Qo'shish</button>
+        </form>
+    </div>
+</main>
+
+<script src="{% static 'js/homiyperson.js' %}"></script>
+</body>
+</html>

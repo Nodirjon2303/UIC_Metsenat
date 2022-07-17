@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Rubik:wght@400;500&display=swap");
+
+:root {
+  --main-background-color: #e5e5e5;
+  --blue-text-color: #3366ff;
+
+  --sky-text-color: rgba(51, 102, 255, 0.6);
+  --text-color: #f44336;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: "League Spartan", sans-serif;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 12px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: var(--main-color);
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.container {
+  width: 83%;
+  margin: 0 auto;
+}
+
+.header_inner {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__logo {
+  height: 100%;
+  width: 180px;
+  background-color: #000;
+}
+.header_account {
+  display: flex;
+  align-items: center;
+}
+.account-name {
+  position: relative;
+  font-family: "SF Pro Text";
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 150%;
+
+  text-align: right;
+  letter-spacing: -0.35px;
+
+  color: #28293d;
+
+  padding: 10px 60px 10px 20px;
+  background-color: #f1f1f3;
+  border-radius: 6px;
+  margin-right: 45px;
+}
+
+.account-name span {
+  display: block;
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+  right: 4px;
+  top: 4px;
+  background-color: rgb(52, 204, 80);
+}
+.account-exit {
+  width: 32px;
+  height: 32px;
+  background-color: rgb(86, 86, 86);
+}
+
+.filter {
+  box-shadow: inset 0px 25px 40px rgba(0, 0, 0, 0.03);
+}
+
+.filter--inner {
+  height: 88px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.radio-btns {
+  font-size: 0;
+}
+.radio-btns a {
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 12px;
+
+  letter-spacing: 1.125px;
+  text-transform: uppercase;
+
+  width: 193px;
+  padding: 15px 70px;
+
+  border: 2px solid #e0e7ff;
+}
+
+#dashboard {
+  border-radius: 6px 0px 0px 6px;
+  color: #ffffff;
+  background: #3366ff;
+}
+
+#homiylar {
+  color: rgba(51, 102, 255, 0.6);
+  background: #fff;
+  border-right: none;
+  border-left: none;
+}
+#talabalar {
+  color: rgba(51, 102, 255, 0.6);
+  background: #fff;
+  border-radius: 0px 6px 6px 0px;
+}
+
+.filter-inner {
+  position: relative;
+}
+
+.filter-input {
+  font-family: "Rubik";
+  font-size: 15px;
+  line-height: 18px;
+  color: #b1b1b8;
+
+  width: 285px;
+  padding: 11px 0 11px 40px;
+  background: #e8e8e8;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+.filter-inner::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(177, 177, 184, 1);
+  top: 14px;
+  left: 11px;
+  z-index: 1111;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(177, 177, 184, 1);
+}
+:-moz-placeholder {
+  color: rgba(177, 177, 184, 1);
+}
+::-moz-placeholder {
+  color: rgba(177, 177, 184, 1);
+}
+:-ms-input-placeholder {
+  color: rgba(177, 177, 184, 1);
+}
+
+.main__btn {
+  font-family: "SF Pro Text";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.35px;
+
+  color: #3365fc;
+  padding: 8px 32px 8px 58px;
+  background: #edf1fd;
+  border-radius: 5px;
+}
+
+main {
+  background: #e5e5e5;
+  min-height: 80vh;
+}
+
+.sum-items {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.sum-item {
+  width: 32%;
+  background-color: #fff;
+  height: 96px;
+  border: 1px solid rgba(46, 91, 255, 0.08);
+  border-radius: 8px;
+  display: flex;
+  padding: 24px 0 24px 24px;
+}
+.sum-img {
+  width: 48px;
+  height: 48px;
+  background: rgba(76, 111, 255, 0.1);
+  margin-right: 16px;
+  border-radius: 12px;
+}
+.sum-name {
+  margin: 5px 0 7px;
+  font-family: "Rubik";
+  font-size: 12px;
+
+  color: #7a7a9d;
+}
+.sum-count {
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  font-size: 20px;
+
+  color: #2e384d;
+}
+
+.stats_box {
+  margin-top: 30px;
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+
+  border: 1px solid rgba(46, 91, 255, 0.08);
+  border-radius: 8px;
+}

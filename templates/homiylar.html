@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Metsenat</title>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'styles/homiylar.css' %}"/>
+</head>
+<body>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+</script>
+
+<header>
+    <div class="container">
+        <div class="header_inner">
+            <div class="header__logo"></div>
+            <div class="header_account">
+                <div class="account-name">{{ request.user.username }} <span></span></div>
+                <div class="account-exit"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter">
+        <div class="container">
+            <div class="filter--inner">
+                <div class="radio-btns">
+                    <a href="{% url 'home' %}" id="dashboard">Dashboard</a>
+                    <a href="{% url 'homiy' %}" id="homiylar">homiylar</a>
+                    <a href="{% url 'students' %}" id="talabalar">Talabalar</a>
+                </div>
+                <div class="filter-inner">
+                    <input class="filter-input" id="homiysearch" onkeyup="homiy_search()" type="text" placeholder="F.I.SH izlash"/>
+                    <button class="main__btn">Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="homiylar_inner">
+            <table id="homiy_block"  cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>#</th>
+                    <th>F.i.sh.</th>
+                    <th>Tel.Raqami</th>
+                    <th>Homiylik summasi</th>
+                    <th>Sarflangan summa</th>
+                    <th>Sana</th>
+                    <th>Holati</th>
+                    <th>amallar</th>
+                </tr>
+                {% for i in arizas %}
+                    <tr>
+                        <td>{{ i.N }}</td>
+                        <td>{{ i.fish }}</td>
+                        <td>+998 {{ i.phone }}</td>
+                        <td>{{ i.amount }} <span>UZS</span></td>
+                        <td>0 <span>UZS</span></td>
+                        <td>{{ i.date }}</td>
+                        <td>{{ i.status }}</td>
+                        <td>
+                            <a href="{% url 'singlehomiy' i.id %}"
+                            ><img src="{% static 'img/eye.png' %}" alt="eye"
+                            /></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="table_info">
+                <div class="view_count">
+                    <span>{{ jami }}</span> tadan {{ min }}-{{ max }} ko‘rsatilmoqda
+                </div>
+                <form class="buttons">
+                    <label for="view_page">Ko‘rsatish</label>
+                    <select onchange="this.form.submit()" name="view_page" id="view_page">
+                        {% for view_page in viewpages %}
+                            {% if view_page.number == viewpage %}
+                                <option selected value="{{ view_page.number }}">{{ view_page.number }}</option>
+                            {% else %}
+                                <option value="{{ view_page.number }}">{{ view_page.number }}</option>
+
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% for i in pages %}
+                        {% if i == page %}
+                            <button id="first" name="page" value="{{ i }}">{{ i }}</button>
+                        {% else %}
+                            <button name="page" value="{{ i }}">{{ i }}</button>
+                        {% endif %}
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="filter_box">
+    <div class="filter_container">
+        <div class="filter_box-top">
+            <div class="filter_box-title">Filter</div>
+            <button id="filter_close">+</button>
+        </div>
+        <form action="" class="filter_form">
+
+            <label for="form_select"> Ariza holati </label>
+            <select name="ariza-state"  id="form_select">
+                <option value="all">Barchasi</option>
+                <option value="yangi">Yangi</option>
+                <option value="moderatsiya">Moderatsiya</option>
+                <option value="tasdiqlangan">Tasdiqlangan</option>
+                <option value="cancel">Bekor qilingan</option>
+            </select>
+
+            <div class="price__box">
+                <label for="payment">homiylik summasi</label> <br/>
+
+                <div class="price__box-inner">
+                    <div class="price">
+                        <label class="for-radio" for="firstp">Barchasi</label>
+                        <input type="radio" value="all" id="firstp" name="payment" checked/>
+                    </div>
+
+                    <div class="price">
+                        <label class="for-radio" for="secondp"
+                        >1 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" value="1000000" id="secondp" name="payment"/>
+                    </div>
+
+                    <div class="price">
+                        <label class="for-radio"  for="thirdp"
+                        >5 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" id="thirdp" value="5000000" name="payment"/>
+                    </div>
+
+                    <div class="price">
+                        <label class="for-radio" for="fourthp"
+                        >7 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" id="fourthp" value="7000000" name="payment"/>
+                    </div>
+
+                    <div class="price">
+                        <label class="for-radio" for="fifthp"
+                        >10 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" id="fifthp" name="payment" value="10000000"/>
+                    </div>
+                    <div class="price">
+                        <label class="for-radio" for="sixthp"
+                        >30 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" id="sixthp" name="payment" value="30000000"/>
+                    </div>
+                    <div class="price">
+                        <label class="for-radio" for="seventhp"
+                        >50 000 000 <span>uzs</span></label
+                        >
+                        <input type="radio" id="seventhp" name="payment" value="50000000"/>
+                    </div>
+                </div>
+            </div>
+            <input name="date" class="date" type="date"/>
+            <div class="form_bottom-btns">
+                <input class="reset" onclick="location.href='/main/homiy'" type="reset" value="Tozalash"/>
+                <button class="see" type="submit">Natijani ko'rish</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/homiylar.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Metsenat</title>
+     <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+    <link rel="stylesheet" href="{% static 'styles/homiyperson.css' %}"/>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="header_inner">
+            <div class="header__logo"></div>
+            <div class="header_account">
+                <div class="account-name">{{ request.user.username }}<span></span></div>
+                <div class="account-exit"></div>
+            </div>
+        </div>
+    </div>
+    <div class="about">
+        <div class="container">
+            <div class="about_inner">
+                <a class="about_back" href="{% url 'homiy' %}"
+                ><img src="{% static 'img/arrowleft.svg' %}" alt="back"
+                /></a>
+                <div class="person_name">{{ ariza.fish }}</div>
+                <div class="person_status">{{ ariza.status }}</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="person_card">
+        <div class="card_top">
+            <div class="card_about">Homiy haqida</div>
+            <button class="card_edit">Tahrirlash</button>
+        </div>
+        <div class="person_profile">
+            <div class="person_img"></div>
+            <div class="person_name-card">{{ ariza.fish }}</div>
+        </div>
+        <div class="person_info">
+            <div class="info_block">
+                <div class="info_name">telefon raqam</div>
+                <div class="ingo_text">+998 {{ ariza.phone }}</div>
+            </div>
+            <div class="info_block">
+                <div class="info_name">Homiylik summasi</div>
+                <div class="ingo_text">{{ ariza.amount }} UZS</div>
+            </div>
+            {% if ariza.type == 'yuridik' %}
+                <div class="info_block">
+                    <div class="info_name">Tashkilot nomi</div>
+                    <div class="ingo_text">{{ ariza.tashkilot }}</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="edit_back">
+        <div class="edit_box">
+            <div class="edit_box-inner">
+                <div class="edit_box-top">
+                    <div class="top_title">Tahrirlash</div>
+                    <div class="edit_close">+</div>
+                </div>
+
+                <div class="form__box">
+                    <div class="btns">
+                        {% if ariza.type == 'jismoniy' %}
+                            <button onclick="change_active('jismoniy')" id="jismoniy" class="active">Jismoniy shaxs</button>
+                            <button onclick="change_active('yuridik')" id="yuridik">yuridik shaxs</button>
+                        {% else %}
+                            <button onclick="change_active('jismoniy')" id="jismoniy">Jismoniy shaxs</button>
+                            <button onclick="change_active('yuridik')" id="yuridik" class="active">yuridik shaxs</button>
+                        {% endif %}
+
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <label for="fname">F.I.SH. (Familiya Ism Sharifingiz)</label>
+                        <input
+                                type="text"
+                                id="fname"
+                                name="fname"
+                                value="{{ ariza.fish }}"
+                        />
+                        <label for="pnumber">Telefon raqamingiz</label>
+                        <input
+                                type="number"
+                                id="pnumber"
+                                name="pnumber"
+                                value="{{ ariza.phone }}"
+                        />
+
+                        <label for="holat">Holati</label>
+                        <select name="holat" id="holat">
+                            {% for i in ariza.option_status %}
+                                {% if i == ariza.status %}
+                                    <option value="{{ i }}" name="status" selected>{{ i }}</option>
+                                {% else %}
+                                    <option value="{{ i }}" name="status">{{ i }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+
+                        <label for="summasi">Holati</label>
+                        <select name="summasi" id="summasi">
+
+                            <option value="{{ ariza.amount }}">{{ ariza.amount }}</option>
+                            <option value="1000000">1 000 000</option>
+                            <option value="5000000">5 000 000</option>
+                            <option value="7000000">7 000 000</option>
+                            <option value="10000000">10 000 000</option>
+                            <option value="30000000">30 000 000</option>
+                            <option value="50000000">50 000 000</option>
+                        </select>
+
+                        <label for="turi">To'lov turi</label>
+                        <select name="turi" id="turi">
+                            {% if ariza.paymentType == 'exchange' %}
+                                <option value="exchange" selected>Pul o'tqazmalari</option>
+                                <option value="cash">Naqt to'lov</option>
+                                <option value="None">None</option>
+                            {% elif ariza.paymentType == 'cash' %}
+                                <option value="exchange">Pul o'tqazmalari</option>
+                                <option value="cash" selected>Naqt to'lov</option>
+                                <option value="None">None</option>
+                            {% else %}
+                                <option value="exchange">Pul o'tqazmalari</option>
+                                <option value="cash">Naqt to'lov</option>
+                                <option value="None" selected>None</option>
+                            {% endif %}
+
+
+                        </select>
+                    <div id="communitydiv">
+                        {% if ariza.type == 'yuridik' %}
+                            <div id="community" >
+                            <label for="community">Tashkilot Nomi</label>
+                            <input
+                                    type="text" class="active"
+                                    name="community"
+                                    value="{{ ariza.tashkilot }}"
+                                    placeholder="Tashkilot nomini kiriting"
+                            />
+                            <br>
+                            </div>
+                        {% endif %}
+</div>
+                        <input   type="hidden"  name="type" id="typeshaxs" value="{{ ariza.type }}" />
+                        <button class="submit" type="submit">Yuborish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'js/homiyperson.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metsenat</title>
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}" />
+  </head>
+  <body>
+    <img src="{% static 'img/logo.svg' %}" alt="Logo" class="logo" />
+    <div class="login_box">
+      <div class="login__title">Kirish</div>
+      <form action="" class="form" method="POST">
+          {% csrf_token %}
+        <label for="login">Login</label>
+        <input
+          type="text"
+          name="username"
+          id="login-input"
+          placeholder="adm8900"
+          required
+        />
+        <br />
+        <label for="pass">Parol</label>
+        <input type="password" id="pass" name="password" required />
+        <button type="submit">Kirish</button>
+      </form>
+    </div>
+    <script src="{% static 'home.js' %}"></script>
+  </body>
+</html>

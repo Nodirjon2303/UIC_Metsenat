@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metsenat</title>
+       <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header_inner">
+          <div class="header__logo"></div>
+          <div class="header_account">
+            <div class="account-name">{{ request.user.username }} <span></span></div>
+            <div class="account-exit"></div>
+          </div>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="container">
+          <div class="filter--inner">
+            <div class="radio-btns">
+              <a href="{% url 'home' %}" id="dashboard">Dashboard</a>
+              <a href="{% url 'homiy' %}" id="homiylar">homiylar</a>
+              <a href="{% url 'students' %}" id="talabalar">Talabalar</a>
+            </div>
+            <div class="filter-inner">
+              <input class="filter-input" type="text" placeholder="Izlash" />
+              <button class="main__btn">Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="sum-items">
+          <div class="sum-item">
+            <div class="sum-img"></div>
+            <div class="sum-info">
+              <div class="sum-name">Jami to'langan summa</div>
+              <div class="sum-count">{{ spent }}</div>
+            </div>
+          </div>
+          <div class="sum-item">
+            <div class="sum-img"></div>
+            <div class="sum-info">
+              <div class="sum-name">Jami so'ralgan summa</div>
+              <div class="sum-count">{{ request }}</div>
+            </div>
+          </div>
+          <div class="sum-item">
+            <div class="sum-img"></div>
+            <div class="sum-info">
+              <div class="sum-name">To'lash kerak summa</div>
+              <div class="sum-count">{{ differ }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="stats_box"></div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/home.js' %}"></script>
+  </body>
+</html>

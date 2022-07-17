@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metsenat</title>
+       <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+    <link rel="stylesheet" href="{% static 'styles/studentperson.css' %}" />
+  </head>
+  <body>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+</script>
+
+    <header>
+      <div class="container">
+        <div class="header_inner">
+          <div class="header__logo"></div>
+          <div class="header_account">
+            <div class="account-name">{{ request.user.username }} <span></span></div>
+            <div class="account-exit"></div>
+          </div>
+        </div>
+      </div>
+      <div class="about">
+        <div class="container">
+          <div class="about_inner">
+            <a class="about_back" href="{% url 'students' %}"
+              ><img src="{% static 'img/arrowleft.svg' %}" alt="back"
+            /></a>
+            <div class="person_name">{{ student.fish }}</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="person_card">
+        <div class="card_top">
+          <div class="card_about">Talaba haqida</div>
+          <button class="card_edit">Tahrirlash</button>
+        </div>
+        <div class="main_info">Asosiy malumotlar</div>
+        <div class="person_profile">
+          <div class="person_img"></div>
+          <div class="person_name-card">{{ student.fish }}</div>
+        </div>
+        <div class="info_block">
+          <div class="info_name">telefon raqam</div>
+          <div class="ingo_text">+998 {{ student.phone }}</div>
+        </div>
+        <div class="main_info">O‘qish joyi haqida ma’lumot</div>
+        <div class="person_info">
+          <div class="info_block">
+            <div class="info_name">OTM</div>
+            <div class="ingo_text">
+              {{ student.otm}}
+            </div>
+          </div>
+          <div class="info_block">
+            <div class="info_name">Talabalik turi</div>
+            <div class="ingo_text">{{ student.t_turi }}</div>
+          </div>
+          <div class="info_block">
+            <div class="info_name">Ajratilingan summa</div>
+            <div class="ingo_text">{{ student.homiy_amount }} UZS</div>
+          </div>
+          <div class="info_block">
+            <div class="info_name">Kontrakt miqdori</div>
+            <div class="ingo_text">{{ student.kontrakt }} UZS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="person_card">
+        <div class="card_top">
+          <div class="card_about">Talabaga homiylar</div>
+          <button class="add_homiy_btn">Homiy qo'shish</button>
+        </div>
+        <div class="homiylar_inner">
+          <table id="homiy_block" cellspacing="0" cellpadding="0">
+            <tr>
+              <th>#</th>
+              <th>F.i.sh.</th>
+              <th>Ajratilingan summa</th>
+              <th>Amallar</th>
+            </tr>
+              {% for i in homiylar %}
+            <tr>
+              <td>{{ i.N }}</td>
+              <td>{{ i.fish }}</td>
+              <td>{{ i.amount }} <span>UZS</span></td>
+              <td>
+                <button><img src="{% static 'img/eye.png' %}" alt="eye" /></button>
+              </td>
+            </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+
+      <div class="edit_back">
+        <div class="edit_box">
+          <div class="edit_box-inner">
+            <div class="edit_box-top">
+              <div class="top_title">Tahrirlash</div>
+              <div class="edit_close">+</div>
+            </div>
+
+            <div class="form__box">
+              <div class="btns">
+                <button id="jismoniy" class="active">Jismoniy shaxs</button>
+                <button id="yuridik">yuridik shaxs</button>
+              </div>
+              <form action="">
+                <label for="fname">F.I.SH. (Familiya Ism Sharifingiz)</label>
+                <input
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  placeholder="Abdullayev Abdulla Abdullayevich"
+                />
+                <label for="pnumber">Telefon raqamingiz</label>
+                <input
+                  type="number"
+                  id="pnumber"
+                  name="pnumber"
+                  placeholder="00 000-00-00"
+                />
+
+                <label for="holat">Holati</label>
+                <select name="holat" id="holat">
+                  <option value="">Tasdiqlangan</option>
+                  <option value="">Moderatsiyada</option>
+                  <option value="">Bekor qilingan</option>
+                </select>
+
+                <label for="summasi">Holati</label>
+                <select name="summasi" id="summasi">
+                  <option value="">30 000 000</option>
+                  <option value="">50 000 000</option>
+                  <option value="">100 000 000</option>
+                </select>
+
+                <label for="turi">To'lov turi</label>
+                <select name="turi" id="turi">
+                  <option value="">Pul o'tqazmalari</option>
+                  <option value="">Naqt to'lov</option>
+                </select>
+
+                <button class="submit" type="submit">Yuborish</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="add_homiy">
+        <div class="addh_box">
+          <div class="addh_inner">
+            <div class="edit_box-top">
+              <div class="top_title">Tahrirlash</div>
+              <div class="edit_close-homiy">+</div>
+            </div>
+            <form action="" class="homiy_add-form" method="post">
+            {% csrf_token %}
+              <label for="homiyism">F.I.SH(Familiya Ism Sharifingiz</label>
+              <select onchange="homiy_balance()" name="homiy" id="homiyism">
+              {% if not available_homiys %}
+                <option value="">Homiy topilmadi</option>
+              {% endif %}
+                  {% for i in available_homiys %}
+                <option value="{{ i.id }}">{{ i.fish }}</option>
+                  {% endfor %}
+              </select>
+              <label for="amount">Ajratilgan summa</label>
+              <input id="homiyamount" type="number" name="amount" min="1000" max="{{ max }}" placeholder="{{ max }} so'mgacha kiriting " />
+
+              <button type="reset" class="clear_homiy">O'chirish</button>
+              <button class="add_homiy-btn" type="submit">Qo'shish</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/studentperson.js' %}"></script>
+  </body>
+</html>

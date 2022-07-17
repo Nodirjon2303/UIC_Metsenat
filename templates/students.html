@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metsenat</title>
+    <link rel="stylesheet" href="{% static 'styles/students.css' %}" />
+   <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+  </head>
+  <body>
+
+  <script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+</script>
+    <header>
+      <div class="container">
+        <div class="header_inner">
+          <div class="header__logo"></div>
+          <div class="header_account">
+            <div class="account-name">{{ request.user.username }} <span></span></div>
+            <div class="account-exit"></div>
+          </div>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="container">
+          <div class="filter--inner">
+            <div class="radio-btns">
+              <a href="{% url 'home' %}" id="dashboard">Dashboard</a>
+              <a href="{% url 'homiy' %}" id="homiylar">homiylar</a>
+              <a href="{% url 'students' %}" id="talabalar">Talabalar</a>
+            </div>
+            <div class="filter-inner">
+              <input class="filter-input" type="text" id="talabasearch" onkeyup="talaba_search()" placeholder="Talabani izlash" />
+              <button class="main__btn">Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="homiylar_inner">
+          <a href="{% url 'add-student' %}" id="talaba_qoshish"
+            ><span>+</span> Talaba qo'shish</a
+          >
+          <table id="homiy_block" cellspacing="0" cellpadding="0">
+            <tr>
+              <th>#</th>
+              <th>F.i.sh.</th>
+              <th>Talabalik turi</th>
+              <th>OTM</th>
+              <th>Ajratilingan summa</th>
+              <th>Kontrakt miqdori</th>
+              <th>Amallar</th>
+            </tr>
+              {% for i in students %}
+            <tr>
+              <td>{{ i.N }}</td>
+              <td>{{ i.fish }}</td>
+              <td>{{ i.turi }}</td>
+              <td>{{ i.otm }}</td>
+              <td>{{ i.homiy_amount }} <span>UZS</span></td>
+              <td>{{ i.kontakt }} <span>UZS</span></td>
+              <td>
+                <a href="{% url 'single-student' i.id %}"
+                  ><img src="{% static 'img/eye.png' %}" alt="eye"
+                /></a>
+              </td>
+            </tr>
+              {% endfor %}
+          </table>
+          <div class="table_info">
+            <div class="view_count">
+              <span>{{ jami }}</span> tadan {{ min }}-{{ max }} ko‘rsatilmoqda
+            </div>
+            <form class="buttons">
+              <label for="view_page">Ko‘rsatish</label>
+                    <select style="display:inline-block" onchange="this.form.submit()" name="view_page" id="view_page">
+                        {% for view_page in viewpages %}
+                            {% if view_page.number == viewpage %}
+                                <option selected value="{{ view_page.number }}">{{ view_page.number }}</option>
+                            {% else %}
+                                <option value="{{ view_page.number }}">{{ view_page.number }}</option>
+
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+              {% for i in pages %}
+                        {% if i == page %}
+                            <button id="first" name="page" value="{{ i }}">{{ i }}</button>
+                        {% else %}
+                            <button name="page" value="{{ i }}">{{ i }}</button>
+                        {% endif %}
+                    {% endfor %}
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_box">
+        <div class="filter_container">
+          <div class="filter_box-top">
+            <div class="filter_box-title">Filter</div>
+            <button id="filter_close">+</button>
+          </div>
+          <form action="" class="filter_form">
+            <label for="turi">Talabalik turi</label>
+            <select name="filter-turi" id="turi">
+              <option value="all">Barchasi</option>
+              <option value="bakalavr">Bakalavr</option>
+              <option value="magistr">Magistratura</option>
+            </select>
+            <label for="otm">OTM</label>
+            <select name="filter-otm" id="otm">
+              <option value="all">Barchasi</option>
+                {% for i in otms %}
+              <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="form_bottom-btns">
+              <input class="reset" type="reset" onclick="location.href='/main/students'" value="Tozalash" />
+              <button class="see" type="submit">Natijani ko'rish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/students.js' %}"></script>
+  </body>
+</html>
